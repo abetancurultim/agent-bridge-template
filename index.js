@@ -31,7 +31,7 @@ fastify.register(fastifyWs);
 const PORT = process.env.PORT || 8001;
 
 // Root route for health check
-fastify.get("/voz-balance/health", async (_, reply) => {
+fastify.get("/health", async (_, reply) => {
 reply.send({ message: "Server is running-balance-port-8001" });
 });
 
@@ -45,7 +45,7 @@ reply.send({ routes });
 });
 
 // Route to handle incoming calls from Twilio
-fastify.all("/voz-balance/inbound_call", async (request, reply) => {
+fastify.all("/inbound_call", async (request, reply) => {
 console.log("[TWILIO] 📞 Incoming call received");
 console.log("[TWILIO] Method:", request.method);
 console.log("[TWILIO] URL:", request.url);
@@ -57,7 +57,7 @@ console.log("[TWILIO] Body:", request.body);
 const twimlResponse = `<?xml version="1.0" encoding="UTF-8"?>
     <Response>
     <Connect>
-        <Stream url="wss://${request.headers.host}/voz-balance/media-stream" />
+        <Stream url="wss://${request.headers.host}/media-stream" />
     </Connect>
     </Response>`;
 
@@ -67,7 +67,7 @@ reply.type("text/xml").send(twimlResponse);
 
 
 // Endpoint para que ElevenLabs envíe datos del cliente
-fastify.post("/voz-balance/send-email", async (request, reply) => {
+fastify.post("/send-email", async (request, reply) => {
   try {
     console.log("[API] 📧 Recibida solicitud para enviar datos del cliente");
     console.log("[API] Body:", request.body);
@@ -93,7 +93,7 @@ fastify.post("/voz-balance/send-email", async (request, reply) => {
 
 // WebSocket route for handling media streams from Twilio
 fastify.register(async (fastifyInstance) => {
-fastifyInstance.get("/voz-balance/media-stream", { websocket: true }, (connection, req) => {
+fastifyInstance.get("/media-stream", { websocket: true }, (connection, req) => {
     console.info("[Server] Twilio connected to media stream.");
     console.log("[Server] WebSocket headers:", req.headers);
 
