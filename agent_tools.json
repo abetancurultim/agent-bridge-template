@@ -1,0 +1,102 @@
+[
+  {
+    "name": "send_email",
+    "description": "Enviar el email de los datos del cliente al equipo de Balance Industry para que pueda agendar la cita dental",
+    "type": "webhook",
+    "api_schema": {
+      "url": "https://39e6b299b4d3.ngrok-free.app/balance/send-email",
+      "method": "POST",
+      "path_params_schema": [],
+      "query_params_schema": [],
+      "request_body_schema": {
+        "id": "body",
+        "type": "object",
+        "description": "Datos del cliente para agendar cita dental",
+        "required": true,
+        "properties": [
+          {
+            "id": "nombre",
+            "type": "string",
+            "description": "Nombre completo del cliente",
+            "dynamic_variable": "",
+            "constant_value": "",
+            "value_type": "llm_prompt",
+            "required": true
+          },
+          {
+            "id": "telefono",
+            "type": "string",
+            "description": "Número de teléfono del cliente",
+            "dynamic_variable": "",
+            "constant_value": "",
+            "value_type": "llm_prompt",
+            "required": true
+          },
+          {
+            "id": "necesidad_dental",
+            "type": "string",
+            "description": "Tipo de servicio dental necesario - ej: limpieza dental, emergencia, consulta general",
+            "dynamic_variable": "",
+            "constant_value": "",
+            "value_type": "llm_prompt",
+            "required": true
+          },
+          {
+            "id": "fecha_nacimiento",
+            "type": "string",
+            "description": "Fecha de nacimiento del cliente (opcional) - formato: YYYY-MM-DD",
+            "dynamic_variable": "",
+            "constant_value": "",
+            "value_type": "llm_prompt",
+            "required": false
+          },
+          {
+            "id": "seguro_dental",
+            "type": "string",
+            "description": "Nombre del seguro dental (opcional)",
+            "dynamic_variable": "",
+            "constant_value": "",
+            "value_type": "llm_prompt",
+            "required": false
+          },
+          {
+            "id": "horario_preferido",
+            "type": "string",
+            "description": "Horario preferido para la cita (opcional) - ej: mañana, tarde",
+            "dynamic_variable": "",
+            "constant_value": "",
+            "value_type": "llm_prompt",
+            "required": false
+          },
+          {
+            "id": "fecha_preferida",
+            "type": "string",
+            "description": "Fecha preferida para la cita (opcional)",
+            "dynamic_variable": "",
+            "constant_value": "",
+            "value_type": "llm_prompt",
+            "required": false
+          },
+          {
+            "id": "notas_adicionales",
+            "type": "string",
+            "description": "Notas adicionales o requerimientos especiales (opcional)",
+            "dynamic_variable": "",
+            "constant_value": "",
+            "value_type": "llm_prompt",
+            "required": false
+          }
+        ],
+        "value_type": "llm_prompt",
+        "dynamic_variable": "",
+        "constant_value": ""
+      },
+      "request_headers": [],
+      "auth_connection": null
+    },
+    "response_timeout_secs": 20,
+    "dynamic_variables": {
+      "dynamic_variable_placeholders": {}
+    }
+  }
+]
